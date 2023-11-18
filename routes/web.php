@@ -16,7 +16,7 @@ use App\Http\Controllers\StudyRecordController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('dashboard');
 });
 
 Route::get('/dashboard', function () {
