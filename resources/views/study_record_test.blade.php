@@ -3,22 +3,37 @@
         <title>Flashcards</title>
         <script src="https://unpkg.com/vue@3"></script>
         <script src="https://cdn.tailwindcss.com"></script>
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+
+        <!-- Styles -->
+        <link rel="stylesheet" href="http://localhost:8888/css/app.css">
+
+        <script src="http://localhost:8888/js/app.js" defer></script>
+
     </head>
 </html>
 
-<body class="h-full grid place-items-center bg-gray-100">
+<body class="h-full bg-gray-100">
+
+@include('layouts.navigation')
+
     <div id="app">
-        <section>
+        <section class="h-full w-full flex flex-col items-center justify-center">
             <a href="/dashboard"><h2 class="font-bold mb-2">Finished Studying!</h2></a>
 
                 <div v-for="assignment, index in assignments"
                     class="relative"
+
+                    :style="{'transform': `translate(  ${index * 8}px, ${index * 8}px )`, 'z-index': -index }"
+
                     :key="assignment.id"> 
 
                     <div v-if="index<4" 
                         class="flex flex-col justify-between absolute p-12 bg-white rounded  overflow-hidden shadow-lg mb-5 place-content-center"
                         style="border: 1px solid Gainsboro; height:400px; width:600px; transform: translate(-50%,-50%);"
-                        :style="{'z-index': -index, 'top': 8*index + 'px', 'left': 4*index + 'px' }">
+                        >
 
                         <div @click="toggleFlashcard" class="hover:cursor-pointer">
                             <div>@{{ assignment.flashcard.question }}</div>
